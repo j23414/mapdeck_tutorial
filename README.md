@@ -13,6 +13,10 @@ Jennifer Chang
     here](https://cran.r-project.org/web/packages/tmap/vignettes/tmap-getstarted.html)
 -   PubMed Central: [list of articles that mention
     “mapdeck”](https://www.ncbi.nlm.nih.gov/pmc/?term=%22mapdeck%22+geospatial)
+-   PubMed Central: [List of articles that mention
+    “tmap”](https://www.ncbi.nlm.nih.gov/pmc/?term=tmap+geospatial)
+-   New York Times COVID counts: [github
+    repo](https://github.com/nytimes/covid-19-data)
 
 ## Installation
 
@@ -39,6 +43,14 @@ library(spDataLarge)
 library(tmap)
 library(leaflet)
 library(ggplot2)
+
+library(magrittr)
+#> 
+#> Attaching package: 'magrittr'
+#> The following object is masked from 'package:raster':
+#> 
+#>     extract
+library(readr)
 ```
 
 ## Demo run
@@ -50,6 +62,39 @@ tm_shape(nz) +
 ```
 
 ![](imgs/nz-1.png)<!-- -->
+
+## Fetch USA COVID Dataset from New York Times
+
+``` bash
+git clone https://github.com/nytimes/covid-19-data.git
+```
+
+Load state counts into R
+
+``` r
+infile = "../covid-19-data/us-states.csv"
+data <- readr::read_delim(infile, delim=",")
+#> 
+#> ── Column specification ────────────────────────────────────────────────────────
+#> cols(
+#>   date = col_date(format = ""),
+#>   state = col_character(),
+#>   fips = col_character(),
+#>   cases = col_double(),
+#>   deaths = col_double()
+#> )
+
+data %>% head()
+#> # A tibble: 6 x 5
+#>   date       state      fips  cases deaths
+#>   <date>     <chr>      <chr> <dbl>  <dbl>
+#> 1 2020-01-21 Washington 53        1      0
+#> 2 2020-01-22 Washington 53        1      0
+#> 3 2020-01-23 Washington 53        1      0
+#> 4 2020-01-24 Illinois   17        1      0
+#> 5 2020-01-24 Washington 53        1      0
+#> 6 2020-01-25 California 06        1      0
+```
 
 <hr/>
 

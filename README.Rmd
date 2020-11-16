@@ -25,6 +25,8 @@ knitr::opts_chunk$set(
 * Tutorial: [link here](https://geocompr.robinlovelace.net/adv-map.html)
 * tmap tutorial: [link here](https://cran.r-project.org/web/packages/tmap/vignettes/tmap-getstarted.html)
 * PubMed Central: [list of articles that mention "mapdeck"](https://www.ncbi.nlm.nih.gov/pmc/?term=%22mapdeck%22+geospatial)
+* PubMed Central: [List of articles that mention "tmap"](https://www.ncbi.nlm.nih.gov/pmc/?term=tmap+geospatial)
+* New York Times COVID counts: [github repo](https://github.com/nytimes/covid-19-data)
 
 ## Installation
 
@@ -38,6 +40,9 @@ library(spDataLarge)
 library(tmap)
 library(leaflet)
 library(ggplot2)
+
+library(magrittr)
+library(readr)
 ```
 
 ## Demo run 
@@ -46,6 +51,21 @@ library(ggplot2)
 tm_shape(nz) +
   tm_fill() +
   tm_borders()
+```
+
+## Fetch USA COVID Dataset from New York Times
+
+```{bash, eval=FALSE}
+git clone https://github.com/nytimes/covid-19-data.git
+```
+
+Load state counts into R
+
+```{r}
+infile = "../covid-19-data/us-states.csv"
+data <- readr::read_delim(infile, delim=",")
+
+data %>% head()
 ```
 
 <hr/>
