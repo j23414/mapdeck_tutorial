@@ -23,7 +23,34 @@ knitr::opts_chunk$set(
 **More Information**
 
 * Tutorial: [link here](https://geocompr.robinlovelace.net/adv-map.html)
+* tmap tutorial: [link here](https://cran.r-project.org/web/packages/tmap/vignettes/tmap-getstarted.html)
 * PubMed Central: [list of articles that mention "mapdeck"](https://www.ncbi.nlm.nih.gov/pmc/?term=%22mapdeck%22+geospatial)
+
+## Installation
+
+```{r}
+library(sf)
+library(raster)
+library(dplyr)
+library(spData)
+library(spDataLarge)
+
+library(tmap)
+library(leaflet)
+library(ggplot2)
+```
+
+## Demo run 
+
+```{r nz}
+tm_shape(nz) +
+  tm_fill() +
+  tm_borders()
+```
+
+<hr/>
+
+## Scrap after this
 
 This is an R Markdown document. Markdown is a simple formatting syntax for authoring HTML, PDF, and MS Word documents. For more details on using R Markdown see <http://rmarkdown.rstudio.com>.
 
